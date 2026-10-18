@@ -1,0 +1,10 @@
+/** Run every self-check in order; each uses its own temp database. */
+import './manifest-check.mjs'
+import './compatibility-check.mjs'
+import './host-compat-check.mjs'
+import './module-toggle-check.mjs'
+import './skill-auto-check.mjs'
+import './client-smoke-check.mjs'
+import './subagent-activation-check.mjs'
+import './subagent-model-check.mjs'
+import './subagent-effort-live-check.mjs'

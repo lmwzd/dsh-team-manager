@@ -1,0 +1,5 @@
+# One entry mounts the combined Host and Client halves.
+- insert:
+    - id: dsh-team-manager
+      name: 'dsh-team-manager'
+      disabled: !!js "[...ctx.loader.entries()].some((e) => e.options.name === 'dsh-team-manager' && e.options.id !== 'dsh-team-manager' && !e.disabled)"

@@ -1,0 +1,9 @@
+# Build artifacts — releases are attached to GitHub Releases, not committed.
+*.tgz
+*.tar.gz
+
+# Local editor / OS noise
+.DS_Store
+Thumbs.db
+*.log
+node_modules/

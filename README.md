@@ -78,6 +78,31 @@
 
 测试的 schema 替身只用于源码目录导入测试，不进入运行入口。真实依赖导入可运行 `node tools/installed-check.mjs <已安装的 lib/index.js 绝对路径>`。界面的真实渲染及点击效果需要在 DSH 设置页验收。
 
+### 备注（Skill）
+
+每个 Skill 可以有一条**你写的**备注，用来记「这东西是干什么的」。它保存在
+`<skills-dir>/.dsh-team-manager/notes.json`，**不写进 `SKILL.md`**：改备注不会
+碰到技能文件的一个字节，模型也读不到它。重建、重新导入、停用/启用技能都不会
+冲掉备注；删除技能时备注一并清理。上限 160 字，存成一行。
+
+界面上它是卡片里的可编辑字段：点击不进入编辑器，失焦即保存，`Enter` 保存，`Esc` 撤销。
+
+### 界面源码结构
+
+`lib/client.js` 是 Web 壳实际加载的唯一客户端文件，但它由源码生成，不要手改：
+
+| 文件 | 作用 |
+| --- | --- |
+| `lib/ui.css` | 唯一的设计系统：`--tm-*` 别名、版式与组件样式 |
+| `lib/skill/client.js` | Skill 页面 |
+| `lib/subagent/client.js` | Subagent 页面 |
+| `lib/tail.js` | 外壳：模块开关、标签栏、注册与样式安装 |
+| `lib/client.js` | 生成产物（`tools/assemble-client.mjs` 拼装） |
+
+改完源码后运行 `node tools/assemble-client.mjs`；`npm test` 会执行 `assemble-check`（产物是否与源码一致）与 `design-system-check`（渲染用到的 `tm_*` 类是否都有规则、样式表里是否有未使用的规则或未配平的注释、颜色是否只取自 `--tm-*` 别名或壳发布的主题 token）。
+
+**改配色前必读**：宿主的主题变量（`--dsw-alias-*`）定义在 `body` 上，不是 `:root`。自定义属性只向下继承，所以本插件的 `--tm-*` 别名层必须声明在 `body` 上；声明在 `:root` 会让每条 `var()` 变成空值，并连带丢掉整条 `border`/`background`/`color` 声明——现象是「文字还在、界面没了」。同时每个 `var(--dsw-…)` 都带字面量兜底。这两条由 `design-system-check` 双向守门（改坏会失败），`tools/shell-tokens.css` 是从已安装 app.asar 里原样提取的宿主主题表，供测试对照。
+
 ## License
 
 MIT。整合自工作区的 SkillManager 与 SubagentManager。

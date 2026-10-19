@@ -1,6 +1,6 @@
 {
   "name": "dsh-team-manager",
-  "version": "0.1.25",
+  "version": "0.1.30",
   "description": "TeamManeger — DSH 设置中的 Skill 与 Subagent 统一管理插件。",
   "type": "module",
   "main": "lib/index.js",

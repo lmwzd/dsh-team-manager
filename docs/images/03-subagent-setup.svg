@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000" role="img" aria-labelledby="title desc">
+<title id="title">Subagent：从设定到派发</title>
+<desc id="desc">每个成员可独立使用；团队分工按任务选择，不要求五人全部出场。。操作流程示意图，非真实界面截图。</desc>
+<rect width="1440" height="1000" fill="#F5F7FB"/>
+<text x="64" y="36" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="21" font-weight="600" dominant-baseline="text-before-edge">TeamManeger / 使用指南</text>
+<text x="64" y="80" fill="#17233B" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="43" font-weight="600" dominant-baseline="text-before-edge">Subagent：从设定到派发</text>
+<text x="64" y="146" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="25" font-weight="400" dominant-baseline="text-before-edge">每个成员可独立使用；团队分工按任务选择，不要求五人全部出场。</text>
+<polyline points="64,914 1376,914" fill="none" stroke="#D8DFEB" stroke-width="2" stroke-linejoin="round"/>
+<text x="64" y="936" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="21" font-weight="400" dominant-baseline="text-before-edge">操作流程示意图 · 基于 v0.2.2 · 非运行界面截图</text>
+<text x="1270" y="936" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="21" font-weight="600" dominant-baseline="text-before-edge">03 / 04</text>
+<rect x="64" y="225" width="716" height="123" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="65" y="247" width="5" height="79" rx="2" fill="#3459CA" stroke="none" stroke-width="2"/>
+<text x="89" y="247" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">1  新建 / 导入</text>
+<text x="89" y="298" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">设置 → TeamManeger → Subagent</text>
+<polyline points="420,349 420,372" fill="none" stroke="#3459CA" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="420.0,372.0 413.9,359.4 426.1,359.4" fill="#3459CA"/>
+<rect x="64" y="376" width="716" height="123" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="65" y="398" width="5" height="79" rx="2" fill="#3459CA" stroke="none" stroke-width="2"/>
+<text x="89" y="398" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">2  配置身份与运行方式</text>
+<text x="89" y="449" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">名称、描述、模型、思考级别与派生选项</text>
+<polyline points="420,500 420,523" fill="none" stroke="#3459CA" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="420.0,523.0 413.9,510.4 426.1,510.4" fill="#3459CA"/>
+<rect x="64" y="527" width="716" height="123" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="65" y="549" width="5" height="79" rx="2" fill="#3459CA" stroke="none" stroke-width="2"/>
+<text x="89" y="549" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">3  填写角色设定</text>
+<text x="89" y="600" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">职责、边界、工作方式、验收与交接</text>
+<polyline points="420,651 420,674" fill="none" stroke="#3459CA" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="420.0,674.0 413.9,661.4 426.1,661.4" fill="#3459CA"/>
+<rect x="64" y="678" width="716" height="123" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="65" y="700" width="5" height="79" rx="2" fill="#3459CA" stroke="none" stroke-width="2"/>
+<text x="89" y="700" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">4  保存并派发</text>
+<text x="89" y="751" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">调用 run_subagent，传入完整任务上下文</text>
+<rect x="826" y="225" width="550" height="576" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<text x="852" y="249" fill="#17233B" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="30" font-weight="600" dominant-baseline="text-before-edge">可选通用成员模板</text>
+<text x="856" y="320" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="26" font-weight="600" dominant-baseline="text-before-edge">Limo</text>
+<text x="970" y="320" fill="#17233B" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="26" font-weight="400" dominant-baseline="text-before-edge">需求与架构</text>
+<text x="856" y="397" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="26" font-weight="600" dominant-baseline="text-before-edge">Peter</text>
+<text x="970" y="397" fill="#17233B" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="26" font-weight="400" dominant-baseline="text-before-edge">后端与领域逻辑</text>
+<text x="856" y="474" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="26" font-weight="600" dominant-baseline="text-before-edge">Tom</text>
+<text x="970" y="474" fill="#17233B" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="26" font-weight="400" dominant-baseline="text-before-edge">前端与交互</text>
+<text x="856" y="551" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="26" font-weight="600" dominant-baseline="text-before-edge">Kare</text>
+<text x="970" y="551" fill="#17233B" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="26" font-weight="400" dominant-baseline="text-before-edge">视觉与动画素材</text>
+<text x="856" y="628" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="26" font-weight="600" dominant-baseline="text-before-edge">Alice</text>
+<text x="970" y="628" fill="#17233B" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="26" font-weight="400" dominant-baseline="text-before-edge">独立审查与验收</text>
+<text x="852" y="729" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="22" font-weight="400" dominant-baseline="text-before-edge">示例未绑定本机模型渠道，导入后可自行配置。</text>
+<text x="66" y="850" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">关闭派生 = 叶子代理；数量上限只约束走 run_subagent 的直接下级。</text>
+</svg>

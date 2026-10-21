@@ -46,10 +46,13 @@ for (const key of ['auto', 'autoTitle', 'autoUnavailable', 'autoModelDisabled'])
 // The stylesheet is installed once, by the shell, from the shared lib/ui.css.
 const created = []
 const appended = []
+const mountFetch = globalThis.fetch
+globalThis.fetch = async () => ({ ok: false, status: 404, json: async () => ({}) })
 globalThis.document = {
+  querySelector: () => null,
   createElement: (tag) => {
     const node = {
-      tag, attrs: {}, textContent: '',
+      tag, attrs: {}, dataset: {}, textContent: '',
       setAttribute(k, v) { this.attrs[k] = v },
       remove() { const i = appended.indexOf(this); if (i >= 0) appended.splice(i, 1) },
     }
@@ -61,6 +64,7 @@ globalThis.document = {
 const injected = []
 const registrations = []
 const ctx = {
+  inject() {},
   locale: {
     bind: () => (key) => key,
     register: () => () => {},
@@ -81,13 +85,14 @@ const ctx = {
   },
 }
 plugin.apply(ctx)
-assert.deepEqual(injected, ['settings.section'], 'only TeamManeger injects settings.section')
-assert.equal(registrations.length, 1, 'only one settings page is registered')
-assert.equal(registrations[0].options.id, 'dsh-team-manager')
+assert.equal(injected.filter(slot => slot === 'settings.section').length, 1, 'only one settings page')
+assert.equal(injected.filter(slot => slot === 'sidebar.footer.action').length, 1, 'one sidebar recycle opener')
+assert.equal(registrations.filter(row => row.options.name === 'settings.section')[0].options.id, 'dsh-team-manager')
+assert.equal(registrations.filter(row => row.options.name === 'sidebar.workspaces.session.menu.item').length, 1, 'one session delete menu row')
 
 // Exactly one stylesheet, holding the whole design system: both pages share it,
 // so a page cannot drift its own private palette.
-const styles = created.filter((node) => node.tag === 'style')
+const styles = created.filter((node) => node.tag === 'style' && node.attrs['data-plugin'] === 'dsh-team-manager')
 assert.equal(styles.length, 1, 'the shell installs exactly one <style>')
 assert.equal(styles[0].attrs['data-plugin'], 'dsh-team-manager')
 assert.ok(styles[0].textContent.includes('--tm-ink:'), 'theme aliases are installed')
@@ -137,4 +142,6 @@ assert.equal(switches.length, 2, 'each module has one switch')
 assert.ok(switches.every((el) => el.props.disabled === true), 'switches stay disabled until the config loads')
 assert.equal(frame[0].props.className, 'tm_shell')
 
-console.log('PASS: client loads, one settings page, one stylesheet, tabs and panel wiring, empty 404 diagnosis')
+assert.ok(!frame.some(el => el.type === 'section' && el.props?.['aria-label'] === '会话回收站'), 'recycle controls stay out of the management interaction page')
+globalThis.fetch = mountFetch
+console.log('PASS: client loads, single settings/recycle entry, retained tabs, independent recycle region, empty 404 diagnosis')

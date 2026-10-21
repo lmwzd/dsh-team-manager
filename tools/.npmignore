@@ -1,0 +1,5 @@
+# Local-only publication helpers must not ship inside the release tarball.
+push-via-api.mjs
+release-via-api.mjs
+__pycache__/
+*.pyc

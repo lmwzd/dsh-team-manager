@@ -1,108 +1,152 @@
-# dsh-team-manager
+# TeamManeger
 
-独立的 DSH 插件，界面品牌名 TeamManeger，内含 Skill 与 Subagent 两个管理模块，不依赖安装旧版 SkillManager 或 SubagentManager。
+**在 DSH 中统一管理 Skill、Subagent 与会话回收站。** 当前版本：**0.2.2**。
 
-运行要求：Node.js >=20。插件不声明 `engines.dsh`，也不在依赖或 peer 依赖中绑定 `@deepseek-ai/dsh` / `dsh-*` 包；不匹配 DSH 版本号，不需要 DSH 版本豁免。能否运行由实际宿主接口及注册结果决定，公开 API 同样可能发生不兼容变化。
+一个安装包包含两个组件：**TeamManeger 管理组件**和**会话回收站**。回收站有独立开关，管理页面只保留 Skill 与 Subagent 两个页签。
 
-插件在执行注册前检查所需的宿主/客户端接口。检测到接口缺失、注册冲突或受保护的初始化失败时，会回滚本次已完成的注册，并通过宿主 `pluginManager` 自动持久停用 TeamManeger。客户端组件渲染错误会报告给 Host，由 Host 处理停用；修复原因后需要在插件管理器中重新启用。如果宿主的停用接口本身不可用，则无法保证完成持久停用，需要查看宿主日志并手动处理。
+[下载最新版](https://github.com/lmwzd/dsh-team-manager/releases/latest) · [更新记录](CHANGELOG.md) · [配置与开发说明](docs/DEVELOPMENT.md) · [五人通用模板](examples/agents/README.md)
 
-普通文件读写失败、网络失败或用户输入错误不属于兼容性失败，不应因此停用插件。接口存在性检查无法识别所有未来的语义变化，也无法在代码执行前捕获模块导入或语法解析失败。Subagent 派发使用当前公开的 `subagents.startActivation`，在子代理启动前按其身份应用角色提示和工具限制，不依赖已移除的 `start` / `startContinuable`。后台子代理在 DSH 重启后继续运行时，角色组合的恢复能力取决于公开接口支持；跨重启恢复的限制会在派发结果中明确提示。
+> 下列图片是按当前操作流程绘制的**操作示意图**，不是运行界面截图；每一步也有文字说明。PNG 便于直接阅读，同目录提供可编辑 SVG。
 
-设置 → TeamManeger 中有两个页签及两个独立开关：
+## 安装后先看这里
 
-- Skill：列表、搜索、新建、编辑、启停、导入，以及每个技能自己的「自动调用」开关。
-- Subagent：列表、搜索、新建、编辑、导入及 `run_subagent` 按名称派发。
+![安装包、组件开关与操作入口的关系](docs/images/01-entry-map.png)
 
-模块开关保存到 TeamManeger 自身的插件配置，通过 DSH configEditor 校验、持久化并按正常 Loader 生命周期应用。关闭 Skill 管理会撤下其管理 API；关闭 Subagent 会撤下其管理 API 和 `run_subagent`。两个都关闭时，设置页仍可用，能够重新开启。
+1. 从 [GitHub Releases](https://github.com/lmwzd/dsh-team-manager/releases) 下载 `dsh-team-manager-0.2.2.tgz`，通过 DSH 插件管理器安装本地文件。
+2. 打开 **设置 → 插件 → 组件**，确认下面两个条目：
 
-关闭模块不会删除技能或子代理文件。关闭 Skill 管理也不会停用已存在的技能；单个技能的启停仍由技能列表中的操作控制。修改模块配置会重载插件，请先保存编辑中的表单。
+   | 组件 | 标识 | 用途 |
+   | --- | --- | --- |
+   | TeamManeger | `dsh-team-manager` | Skill、Subagent 管理及成员派发 |
+   | 会话回收站 | `dsh-team-manager/recycle` | 可恢复的会话删除、恢复与清理；默认关闭 |
 
-## 自动调用
+3. 管理词条时，打开 **设置 → TeamManeger**。需要回收站时，在**组件页**开启“会话回收站”，再点击**侧栏回收站按钮**。
 
-每个 Skill 卡片右侧有「自动调用」开关。开启后，本插件把该技能注册为一段系统提示策略：每次模型步骤开始时，模型会先检查任务是否匹配技能描述；匹配时必须先调用 `skill` 工具加载完整指令，再执行任务，不需要用户点名。关闭时保持 DSH 默认行为（模型自行判断，或由用户明确点名）。
+升级时按安装器要求替换旧包；若返回 `restart-required`，重启 DSH 后刷新页面。已安装旧版 `teammaneger`、SkillManager、SubagentManager 或 `dsh_session_recyclebin` 时，先停用相应独立组件，再启用整合版，避免重复注册工具和路由。
 
-- 自动调用状态保存在 `<skillsDir>/.dsh-team-manager/auto.json`，不写入 `SKILL.md`，因此编辑/迁移技能文件不会带出私有字段。
-- 技能停用（`SKILL.md.disabled`）或声明 `disable-model-invocation: true` 时不会进入自动调用策略；界面会禁用该开关，接口也会拒绝开启。
-- 删除技能会同时清理它的自动调用记录。
-- 此功能依赖宿主公开的 `systemPrompt.section()`；启用 Skill 模块但缺少此接口时，运行时接口检查会触发自动停用。
-- 系统提示策略在每个模型步骤重新计算，开关改动后从下一条消息起生效；界面点击后也会重新读取列表。
+需要 Node.js 20 或更高版本。插件依据实际宿主接口判断兼容性，不要求配置 DSH 版本豁免。
 
-## 子代理派生限制
+## Skill：编辑、备注与自动调用
 
-每个 Subagent 的表单里有「可再派生子代理」开关，开启后才显示「子代理数量上限」。
+![Skill 词条中编辑区域、备注框和功能按钮的区别](docs/images/02-skill-actions.png)
 
-- **关闭开关** = 叶子代理：它自己干活，但生成子代理的工具（`subagent`、`subagent_fork`、`workflow`、`ralph` 及本插件的 `run_subagent`）会从它的会话里移除，它无法再开下级。
-- **开启开关** = 可以派生，数量上限由旁边的输入框决定：**0 = 不设限**，默认 **1**。落盘为 frontmatter 的 `maxChildren`，等于 1（默认值）时不写入。
-- 上限只统计**直接下级**，且在派发前检查：达到上限时本次派发被拒绝，并说明是哪个 Subagent、上限多少、已有几个下级。
-- 上限记在**调用方**（正在派生的那个 Subagent）自己的定义文件上，每个 Subagent 各算各的。
+进入 **设置 → TeamManeger → Skill**：
 
-**边界（如实说明）**：
-
-- 宿主 `subagents` 服务没有「子代理数量」概念，它的 `SubagentStartRequest` 只有 `maxDepth`。因此本上限由本插件的派发工具自行计数并拦截。
-- 因此它**只能约束走 `run_subagent` 的派发**。其他路径（内置 `subagent` / `subagent_fork` / `workflow` 工具）不经此处计数，除非把开关关闭、连带把这些工具一并移除。
-- 计数依赖宿主公开接口 `ctx.subagents.listChildren()`。该接口不可用时，上限**不生效**（放行而不是拦截），以免因读不到目录而误拦正常派发。
-- 插件重载后，子会话与角色定义的关联会丢失：此时回退为从该会话的人设正文里识别角色名。两者都识别不到时视为未命名会话，不施加上限。
-
-## 安装
-
-包名 `dsh-team-manager`。使用 DSH 插件管理器安装本地 tgz。升级已有包后如安装器提示 restart-required，需要重启 DSH 并刷新页面。独立版与整合版同时启用可能重复注册 run_subagent；请使用其中一套。
-
-本包由旧名 `teammaneger` 重命名而来。若曾安装旧名版本，请先禁用或卸载旧条目再启用本包，避免两个条目同时注册同一批路由与工具。自动调用开关的状态文件已改为 `<skillsDir>/.dsh-team-manager/auto.json`；升级时会自动回退读取旧的 `.teammaneger/auto.json`，首次写入后以新目录为准，因此重命名本身不会关闭你已开启的开关。
-
-安装与升级不使用 DSH 版本匹配或版本豁免。自动停用后，先检查宿主日志中的缺失接口或冲突原因；更新插件或解决重复注册，再从插件管理器重新启用。
-
-## 配置
-
-| 配置项 | 默认值 | 用途 |
-| --- | --- | --- |
-| skillEnabled | true | Skill 管理模块开关 |
-| subagentEnabled | true | Subagent 管理模块及派发工具开关 |
-| skillsDir | ~/.dsh/skills | 技能目录，默认遵循 DSH_HOME |
-| agentsDir | ~/.dsh/agents | 子代理目录，默认遵循 DSH_HOME |
-| importRoots | [] | 两个模块允许读取的额外导入目录 |
-| provider | spawn | 子代理派发 provider |
-| toolName | run_subagent | 派发工具名 |
-| leafDenyTools | subagent, subagent_fork, workflow, ralph | 叶子子代理派生工具限制 |
-
-模块配置接口为 `/dsh-team-manager/api/modules`；两个管理 API 分别为 `/dsh-team-manager/api/skill/*` 与 `/dsh-team-manager/api/subagent/*`。自动调用开关使用 `POST /dsh-team-manager/api/skill/skills/auto`。接口复用现有浏览器身份和同源检查。
-
-## 验证
-
-`npm test` 使用临时目录及宿主服务替身，覆盖：
-
-- 模块开关的四种组合、配置保存和模拟重启、路由和工具清理、配置保留、无效输入、跨源请求拒绝、请求大小限制和保存失败；
-- 自动调用的文件层、HTTP API、模拟重启、删除清理、停用/`disable-model-invocation` 过滤、系统提示策略、非法输入、跨源拒绝和缺少 `systemPrompt` 时的降级；
-- 子代理数量上限的 frontmatter 解析与往返（默认 1、0 = 不设限、非法值拒绝）、角色识别（内存映射与重载后的人设正文回退）、超限拒绝且不触达宿主、0 不查询下级、无法识别角色或目录读不到时放行。
-
-`tools/manifest-check.mjs` 检查包入口契约、缺少 `engines.dsh` 及未声明 DSH 运行时依赖版本，不检查 DSH 版本范围。可选的宿主清单检查使用 `node tools/host-compat-check.mjs <解包后的 app-boot 入口> <运行时 package.json>`，也可设置 `DSH_APP_BOOT` 与 `DSH_RUNTIME_MANIFEST`；未提供路径或宿主未导出评估器时会跳过，且不终止后续测试。此检查只验证宿主接受清单，不能证明运行时接口可用。
-
-测试的 schema 替身只用于源码目录导入测试，不进入运行入口。真实依赖导入可运行 `node tools/installed-check.mjs <已安装的 lib/index.js 绝对路径>`。界面的真实渲染及点击效果需要在 DSH 设置页验收。
-
-### 备注（Skill）
-
-每个 Skill 可以有一条**你写的**备注，用来记「这东西是干什么的」。它保存在
-`<skills-dir>/.dsh-team-manager/notes.json`，**不写进 `SKILL.md`**：改备注不会
-碰到技能文件的一个字节，模型也读不到它。重建、重新导入、停用/启用技能都不会
-冲掉备注；删除技能时备注一并清理。上限 160 字，存成一行。
-
-界面上它是卡片里的可编辑字段：点击不进入编辑器，失焦即保存，`Enter` 保存，`Esc` 撤销。
-
-### 界面源码结构
-
-`lib/client.js` 是 Web 壳实际加载的唯一客户端文件，但它由源码生成，不要手改：
-
-| 文件 | 作用 |
+| 操作位置 | 结果 |
 | --- | --- |
-| `lib/ui.css` | 唯一的设计系统：`--tm-*` 别名、版式与组件样式 |
-| `lib/skill/client.js` | Skill 页面 |
-| `lib/subagent/client.js` | Subagent 页面 |
-| `lib/tail.js` | 外壳：模块开关、标签栏、注册与样式安装 |
-| `lib/client.js` | 生成产物（`tools/assemble-client.mjs` 拼装） |
+| 名称、标题及其他空白区域 | 打开完整技能编辑器 |
+| 备注框 | 直接输入备注；按 Enter 或移开焦点保存 |
+| 启用／关闭按钮 | 切换这个技能的启用状态 |
+| 自动调用按钮 | 切换本插件的自动调用策略 |
+| 删除按钮 | 经确认后删除技能 |
 
-改完源码后运行 `node tools/assemble-client.mjs`；`npm test` 会执行 `assemble-check`（产物是否与源码一致）与 `design-system-check`（渲染用到的 `tm_*` 类是否都有规则、样式表里是否有未使用的规则或未配平的注释、颜色是否只取自 `--tm-*` 别名或壳发布的主题 token）。
+搜索框按**名称与备注**筛选。顶部还提供新建、导入和刷新操作。
 
-**改配色前必读**：宿主的主题变量（`--dsw-alias-*`）定义在 `body` 上，不是 `:root`。自定义属性只向下继承，所以本插件的 `--tm-*` 别名层必须声明在 `body` 上；声明在 `:root` 会让每条 `var()` 变成空值，并连带丢掉整条 `border`/`background`/`color` 声明——现象是「文字还在、界面没了」。同时每个 `var(--dsw-…)` 都带字面量兜底。这两条由 `design-system-check` 双向守门（改坏会失败），`tools/shell-tokens.css` 是从已安装 app.asar 里原样提取的宿主主题表，供测试对照。
+删除 Skill 会删除其目录及参考文件，不进入会话回收站；需要保留的技能请先备份。
 
-## License
+### 备注和技能内容分开保存
 
-MIT。整合自工作区的 SkillManager 与 SubagentManager。
+备注只用于记住用途或使用场景，不改技能正文，也不参与自动调用匹配。
+
+- 保存位置：`<skillsDir>/.dsh-team-manager/notes.json`。
+- 按技能目录名关联；单行，最多 160 字符。
+- 停用或重新启用技能不会删除备注；删除技能时一并清理。
+- 可在外部编辑备注文件，再刷新列表。修改已有备注前建议保留备份。
+
+例如：
+
+```json
+{
+  "version": 1,
+  "notes": {
+    "frontend-design": "界面设计与改版时使用"
+  }
+}
+```
+
+这里的键是**技能目录名**，通常与技能名称相同。
+
+### 自动调用怎样工作
+
+开启后，本插件向模型提供自动调用策略：模型根据**任务与技能的 description**判断是否应先调用 `skill` 加载完整指令。它依赖模型判断，不是固定关键词路由。
+
+备注不影响该判断。技能停用或声明 `disable-model-invocation: true` 时，不进入附加策略。关闭“自动调用”只撤下本插件的附加要求，宿主仍可能按默认规则或用户点名加载技能。
+
+自动调用开关保存在 `<skillsDir>/.dsh-team-manager/auto.json`，不写入技能正文。
+
+## Subagent：配置成员并派发任务
+
+![成员新建或导入、设定、保存与派发的流程](docs/images/03-subagent-setup.png)
+
+1. 打开 **设置 → TeamManeger → Subagent**，选择新建或导入。
+2. 填写名称、职责描述和角色正文；根据需要指定模型、思考级别及派生选项。
+3. 保存后，在对话中按名称派发，例如：“让 alice 审查本次改动，重点检查需求一致性和边界情况”。
+
+每个成员对应 `<agentsDir>/<name>.md`。模型未指定时使用宿主继承策略；派发上下文应包含项目路径、目标、必要资料、修改边界与验收标准，成员不会自动看到主会话全文。新启动的成员读取新设定，已运行会话不会自动替换启动时的人设。
+
+### 可选的五人通用模板
+
+仓库和发布包附带 [examples/agents](examples/agents/README.md)，可按需从导入页面选择：
+
+| 成员 | 适合的任务 |
+| --- | --- |
+| [Limo](examples/agents/limo.md) | 需求澄清、方案权衡、架构与任务拆分 |
+| [Peter](examples/agents/peter.md) | 后端、业务规则、数据与接口实现 |
+| [Tom](examples/agents/tom.md) | 页面、交互、渲染与接口接入 |
+| [Kare](examples/agents/kare.md) | 视觉方案、美术与动画资源 |
+| [Alice](examples/agents/alice.md) | 独立审查、缺陷复现与验收 |
+
+示例未绑定作者本机的模型渠道，不会随插件安装自动覆盖你的成员。导入前先检查已有同名定义；每个成员都可独立工作，不必每次启用整支团队。
+
+### 派生选项
+
+- **关闭“可再派生子代理”**：成员作为叶子代理工作，派生工具会从其会话中移除。
+- **开启派生**：`maxChildren` 默认 1，0 表示不限直接下级数量。
+- 数量上限只约束通过本插件 `run_subagent` 派发的直接下级；其他派发路径不经此计数。宿主计数接口不可用时会放行。
+
+深度、计数和跨重启恢复的详细边界见[开发说明](docs/DEVELOPMENT.md#subagent-派发边界)。
+
+## 会话回收站：从组件页启用
+
+![会话移入回收站、恢复、彻底删除与保留天数的操作流程](docs/images/04-recycle-flow.png)
+
+1. 在 **设置 → 插件 → 组件**启用“会话回收站”，标识为 `dsh-team-manager/recycle`。
+2. 在会话菜单中选择删除并确认，会话移入回收站。
+3. 点击侧栏回收站按钮，选择恢复、彻底删除，或清空全部记录。
+4. 在回收站面板中设置 **3–30 天**保留期并保存；过期记录由后台清理计划处理。
+
+**彻底删除、清空及到期清理后的数据不可恢复。** 手动彻底删除和清空需确认。关闭回收站组件会同时关闭新增删除入口，不会退化成直接永久删除。
+
+整合版继续使用 `<DSH_HOME>/session-delete/trash.json` 和 `logs`，保留旧回收记录与保留天数。不要同时启用旧独立回收站，避免两套实例操作同一份数据。
+
+## 常见问题
+
+**组件页没有“会话回收站”？**
+
+确认安装的是 0.2.1 或更高版本，并在“组件”列表中搜索名称或 `dsh-team-manager/recycle`。安装器要求重启时先重启；Skill／Subagent 管理页面不放回收站开关。
+
+**备注点不进去或点击跳到编辑页？**
+
+0.2.2 已修正点击穿透规则的 CSS 优先级。升级后刷新页面；备注框直接输入，其他空白处进入完整编辑器。
+
+**关掉管理模块，会删除定义吗？**
+
+不会。关闭 Skill 模块会撤下其管理接口与本插件的自动调用策略；关闭 Subagent 模块会撤下管理接口和 `run_subagent`。定义文件仍保留，两个模块都关闭时也能从管理页面重新开启。
+
+**插件自动停用了？**
+
+先检查 DSH 日志里的缺失接口或重复注册原因。停用旧独立插件、解决冲突或升级后，再从组件页启用。普通输入错误和网络失败不应触发兼容性停用。
+
+## 开发与验证
+
+[配置、目录、接口及构建说明](docs/DEVELOPMENT.md) · [更新记录](CHANGELOG.md)
+
+```bash
+npm test
+```
+
+测试覆盖组件生命周期、旧数据、恢复与清理、备注隔离、自动调用、成员派发与图文说明。测试使用临时目录和宿主替身；页面实际交互仍需在 DSH 中验收。
+
+## 许可证
+
+[MIT](LICENSE)。回收站部分整合自 MIT 许可的 `dsh_session_recyclebin`，原声明保留在 [lib/recycle/LICENSE](lib/recycle/LICENSE)。

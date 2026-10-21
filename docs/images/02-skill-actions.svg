@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000" role="img" aria-labelledby="title desc">
+<title id="title">Skill 词条：点哪里，做什么？</title>
+<desc id="desc">备注直接编辑，按钮各自操作；标题和其他空白区域打开完整编辑器。。操作流程示意图，非真实界面截图。</desc>
+<rect width="1440" height="1000" fill="#F5F7FB"/>
+<text x="64" y="36" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="21" font-weight="600" dominant-baseline="text-before-edge">TeamManeger / 使用指南</text>
+<text x="64" y="80" fill="#17233B" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="43" font-weight="600" dominant-baseline="text-before-edge">Skill 词条：点哪里，做什么？</text>
+<text x="64" y="146" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="25" font-weight="400" dominant-baseline="text-before-edge">备注直接编辑，按钮各自操作；标题和其他空白区域打开完整编辑器。</text>
+<polyline points="64,914 1376,914" fill="none" stroke="#D8DFEB" stroke-width="2" stroke-linejoin="round"/>
+<text x="64" y="936" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="21" font-weight="400" dominant-baseline="text-before-edge">操作流程示意图 · 基于 v0.2.2 · 非运行界面截图</text>
+<text x="1270" y="936" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="21" font-weight="600" dominant-baseline="text-before-edge">02 / 04</text>
+<rect x="64" y="228" width="564" height="506" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="86" y="250" width="520" height="120" rx="18" fill="#EAF0FF" stroke="none" stroke-width="2"/>
+<text x="110" y="276" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">① 名称 / 标题 / 其他空白</text>
+<text x="110" y="326" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="23" font-weight="400" dominant-baseline="text-before-edge">点击进入完整词条编辑器</text>
+<rect x="86" y="391" width="520" height="126" rx="18" fill="#E6F5ED" stroke="none" stroke-width="2"/>
+<text x="110" y="415" fill="#18764C" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">② 备注输入框</text>
+<text x="110" y="466" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="23" font-weight="400" dominant-baseline="text-before-edge">用一句话写用途或使用场景</text>
+<rect x="86" y="540" width="520" height="170" rx="18" fill="#FFF3D8" stroke="none" stroke-width="2"/>
+<text x="110" y="563" fill="#91600E" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">③ 功能按钮</text>
+<text x="110" y="617" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="23" font-weight="400" dominant-baseline="text-before-edge">启用 / 关闭　　自动调用 / 自动关</text>
+<text x="110" y="659" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="23" font-weight="400" dominant-baseline="text-before-edge">删除（另有确认）</text>
+<polyline points="629,309 690,309" fill="none" stroke="#3459CA" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="690.0,309.0 677.4,315.1 677.4,302.9" fill="#3459CA"/>
+<polyline points="629,455 690,455" fill="none" stroke="#18764C" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="690.0,455.0 677.4,461.1 677.4,448.9" fill="#18764C"/>
+<polyline points="629,625 690,625" fill="none" stroke="#91600E" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="690.0,625.0 677.4,631.1 677.4,618.9" fill="#91600E"/>
+<rect x="710" y="246" width="666" height="127" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="711" y="268" width="5" height="83" rx="2" fill="#3459CA" stroke="none" stroke-width="2"/>
+<text x="735" y="268" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">完整编辑</text>
+<text x="735" y="319" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">修改技能内容前，确认影响范围。</text>
+<rect x="710" y="398" width="666" height="165" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="711" y="420" width="5" height="121" rx="2" fill="#18764C" stroke="none" stroke-width="2"/>
+<text x="735" y="420" fill="#18764C" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">就地改备注</text>
+<text x="735" y="471" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">输入后按 Enter 或移开焦点保存。</text>
+<text x="735" y="508" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">独立写入 notes.json，不修改技能正文。</text>
+<rect x="710" y="588" width="666" height="127" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="711" y="610" width="5" height="83" rx="2" fill="#91600E" stroke="none" stroke-width="2"/>
+<text x="735" y="610" fill="#91600E" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">按钮独立响应</text>
+<text x="735" y="661" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">点击只执行该按钮操作，不打开编辑器。</text>
+<rect x="64" y="784" width="1312" height="83" rx="18" fill="#EAF0FF" stroke="none" stroke-width="2"/>
+<text x="90" y="810" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="27" font-weight="600" dominant-baseline="text-before-edge">自动调用按任务与技能 description 匹配；备注不参与自动匹配。</text>
+</svg>

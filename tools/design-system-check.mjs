@@ -50,6 +50,14 @@ assert.ok(css.trimStart().startsWith('/*') || css.trimStart().startsWith(':'), '
 assert.deepEqual([...used].filter((n) => !defined.has(n)), [], 'every rendered tm_* class has a rule')
 assert.deepEqual([...defined].filter((n) => !used.has(n)), [], 'every tm_* rule is rendered by a page')
 
+// Display layers must pass clicks through to the full-card edit button. Only
+// real controls reclaim pointer events; making the entire footer interactive
+// would reintroduce dead zones between its buttons.
+const hitTestCss = css.replace(/\/\*[\s\S]*?\*\//g, '')
+assert.match(hitTestCss, /\.tm_card > :where\(:not\(\.tm_card_title_button\)\)\s*\{[^}]*pointer-events:\s*none\s*;/, 'display layer uses zero-specificity :where so controls can override it')
+assert.doesNotMatch(hitTestCss, /\.tm_card > \*:not\(\.tm_card_title_button\)\s*\{[^}]*pointer-events:\s*none/, 'old (0,2,0) rule must not override textarea control (0,1,1)')
+assert.match(hitTestCss, /\.tm_card :is\(button, textarea, input, select, a, label\)\s*\{[^}]*pointer-events:\s*auto\s*;/, 'actual controls remain independently clickable')
+
 // The published shell tokens (client inspect: Theme.listTokens), minus the
 // aliases lib/ui.css is allowed to reference directly.
 const shell = new Set([

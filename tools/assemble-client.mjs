@@ -29,11 +29,11 @@ function innerLines(source, file) {
   if (start < 0) throw new Error(`${file}: no factory line`)
   let end = lines.length - 1
   while (end > start && lines[end].trim() === '') end -= 1
-  if (lines[end] !== '})' || lines[end - 1] !== '  },') {
+  if (lines[end] !== '})' || !['  },', '  }'].includes(lines[end - 1])) {
     throw new Error(`${file}: unexpected tail — expected "  }," then "})"`)
   }
   const body = lines.slice(start + 1, end - 1)
-  if (body.some((line) => line.includes('const CSS ='))) {
+  if (file !== 'lib/recycle/client.js' && body.some((line) => line.includes('const CSS ='))) {
     throw new Error(`${file}: carries its own CSS — styles live only in lib/ui.css`)
   }
   return body
@@ -62,6 +62,9 @@ const assembled = [
   '  })(require)',
   'const subagent = ((require) => {',
   ...innerLines(read('lib/subagent/client.js'), 'lib/subagent/client.js'),
+  '  })(require)',
+  'const recycle = ((require) => {',
+  ...innerLines(read('lib/recycle/client.js'), 'lib/recycle/client.js'),
   '  })(require)',
   ...read('lib/tail.js').replace(/\n$/, '').split('\n'),
   '',

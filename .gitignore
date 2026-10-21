@@ -7,3 +7,8 @@
 Thumbs.db
 *.log
 node_modules/
+
+# Local publication helpers (not part of the plugin)
+tools/push-via-api.mjs
+tools/release-via-api.mjs
+SHA256SUMS.txt

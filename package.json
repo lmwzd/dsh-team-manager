@@ -1,7 +1,7 @@
 {
   "name": "dsh-team-manager",
-  "version": "0.1.30",
-  "description": "TeamManeger — DSH 设置中的 Skill 与 Subagent 统一管理插件。",
+  "version": "0.2.2",
+  "description": "TeamManeger — Skill 与 Subagent 统一管理，内置可独立开关的会话回收站。",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -11,6 +11,11 @@
     "./client": {
       "default": "./lib/client.js"
     },
+    "./recycle": {
+      "default": "./lib/recycle/component.js"
+    },
+    "./recycle/locale/*.json": "./lib/recycle/locale/*.json",
+    "./recycle/icon": "./lib/recycle/icon.svg",
     "./package.json": "./package.json",
     "./locale/*.json": "./locale/*.json",
     "./icon": "./icon.svg"
@@ -19,6 +24,10 @@
     "lib",
     "cordis.patch.yml",
     "README.md",
+    "CHANGELOG.md",
+    "docs/images",
+    "docs/DEVELOPMENT.md",
+    "examples",
     "LICENSE",
     "icon.svg",
     "locale",

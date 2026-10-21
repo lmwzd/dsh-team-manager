@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000" role="img" aria-labelledby="title desc">
+<title id="title">会话回收站：删除、恢复与清理</title>
+<desc id="desc">先在组件页启用「会话回收站」，再通过侧栏回收站按钮查看记录。。操作流程示意图，非真实界面截图。</desc>
+<rect width="1440" height="1000" fill="#F5F7FB"/>
+<text x="64" y="36" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="21" font-weight="600" dominant-baseline="text-before-edge">TeamManeger / 使用指南</text>
+<text x="64" y="80" fill="#17233B" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="43" font-weight="600" dominant-baseline="text-before-edge">会话回收站：删除、恢复与清理</text>
+<text x="64" y="146" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="25" font-weight="400" dominant-baseline="text-before-edge">先在组件页启用「会话回收站」，再通过侧栏回收站按钮查看记录。</text>
+<polyline points="64,914 1376,914" fill="none" stroke="#D8DFEB" stroke-width="2" stroke-linejoin="round"/>
+<text x="64" y="936" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="21" font-weight="400" dominant-baseline="text-before-edge">操作流程示意图 · 基于 v0.2.2 · 非运行界面截图</text>
+<text x="1270" y="936" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="21" font-weight="600" dominant-baseline="text-before-edge">04 / 04</text>
+<rect x="64" y="228" width="394" height="145" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="65" y="250" width="5" height="101" rx="2" fill="#3459CA" stroke="none" stroke-width="2"/>
+<text x="89" y="250" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">1  会话菜单 → 删除</text>
+<text x="89" y="301" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">选择要移入回收站的会话。</text>
+<rect x="523" y="228" width="394" height="145" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="524" y="250" width="5" height="101" rx="2" fill="#3459CA" stroke="none" stroke-width="2"/>
+<text x="548" y="250" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">2  确认移入回收站</text>
+<text x="548" y="301" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">保留可恢复记录与原数据。</text>
+<rect x="982" y="228" width="394" height="145" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="983" y="250" width="5" height="101" rx="2" fill="#3459CA" stroke="none" stroke-width="2"/>
+<text x="1007" y="250" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">3  侧栏 → 回收站</text>
+<text x="1007" y="301" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">查看记录与剩余保留时间。</text>
+<polyline points="459,300 517,300" fill="none" stroke="#3459CA" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="517.0,300.0 504.4,306.1 504.4,293.9" fill="#3459CA"/>
+<polyline points="918,300 977,300" fill="none" stroke="#3459CA" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="977.0,300.0 964.4,306.1 964.4,293.9" fill="#3459CA"/>
+<polyline points="1179,375 1179,414 374,414 374,457" fill="none" stroke="#18764C" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="374.0,457.0 367.9,444.4 380.1,444.4" fill="#18764C"/>
+<polyline points="1179,415 1054,415 1054,457" fill="none" stroke="#AD333C" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1054.0,457.0 1047.9,444.4 1060.1,444.4" fill="#AD333C"/>
+<rect x="64" y="460" width="620" height="183" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="65" y="482" width="5" height="139" rx="2" fill="#18764C" stroke="none" stroke-width="2"/>
+<text x="89" y="482" fill="#18764C" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">恢复</text>
+<text x="89" y="533" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">选择记录 → 点击恢复</text>
+<text x="89" y="570" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">会话回到原有工作区和状态。</text>
+<rect x="756" y="460" width="620" height="183" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="757" y="482" width="5" height="139" rx="2" fill="#AD333C" stroke="none" stroke-width="2"/>
+<text x="781" y="482" fill="#AD333C" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">彻底删除 / 清空</text>
+<text x="781" y="533" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">选择删除或清空 → 二次确认</text>
+<text x="781" y="570" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">确认后不可恢复，谨慎操作。</text>
+<rect x="64" y="686" width="1312" height="116" rx="18" fill="#FFF3D8" stroke="none" stroke-width="2"/>
+<text x="90" y="708" fill="#91600E" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">保留天数：3–30 天</text>
+<text x="90" y="758" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="25" font-weight="400" dominant-baseline="text-before-edge">在回收站面板中设置并保存；到期记录按后台清理计划处理。</text>
+<text x="66" y="850" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">关闭回收站组件会一起关闭新增删除入口，不会改为直接永久删除。</text>
+</svg>

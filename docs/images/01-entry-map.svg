@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000" role="img" aria-labelledby="title desc">
+<title id="title">从哪里开始？</title>
+<desc id="desc">一个安装包，两个组件开关；管理词条与打开回收站各有入口。。操作流程示意图，非真实界面截图。</desc>
+<rect width="1440" height="1000" fill="#F5F7FB"/>
+<text x="64" y="36" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="21" font-weight="600" dominant-baseline="text-before-edge">TeamManeger / 使用指南</text>
+<text x="64" y="80" fill="#17233B" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="43" font-weight="600" dominant-baseline="text-before-edge">从哪里开始？</text>
+<text x="64" y="146" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="25" font-weight="400" dominant-baseline="text-before-edge">一个安装包，两个组件开关；管理词条与打开回收站各有入口。</text>
+<polyline points="64,914 1376,914" fill="none" stroke="#D8DFEB" stroke-width="2" stroke-linejoin="round"/>
+<text x="64" y="936" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="21" font-weight="400" dominant-baseline="text-before-edge">操作流程示意图 · 基于 v0.2.2 · 非运行界面截图</text>
+<text x="1270" y="936" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="21" font-weight="600" dominant-baseline="text-before-edge">01 / 04</text>
+<rect x="385" y="214" width="670" height="84" rx="18" fill="#3459CA" stroke="none" stroke-width="2"/>
+<text x="428" y="237" fill="#FFFFFF" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="32" font-weight="600" dominant-baseline="text-before-edge">安装 dsh-team-manager 安装包</text>
+<polyline points="720,299 720,339" fill="none" stroke="#3459CA" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="720.0,339.0 713.9,326.4 726.1,326.4" fill="#3459CA"/>
+<text x="505" y="355" fill="#17233B" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="31" font-weight="600" dominant-baseline="text-before-edge">设置 → 插件 → 组件</text>
+<polyline points="720,403 720,425 363,425 363,449" fill="none" stroke="#3459CA" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="363.0,449.0 356.9,436.4 369.1,436.4" fill="#3459CA"/>
+<polyline points="720,403 720,425 1074,425 1074,449" fill="none" stroke="#3459CA" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1074.0,449.0 1067.9,436.4 1080.1,436.4" fill="#3459CA"/>
+<rect x="64" y="452" width="600" height="168" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="65" y="474" width="5" height="124" rx="2" fill="#3459CA" stroke="none" stroke-width="2"/>
+<text x="89" y="474" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">TeamManeger 管理组件</text>
+<text x="89" y="525" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">启用后提供 Skill 与 Subagent 管理</text>
+<text x="89" y="562" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">词条开关、备注、编辑、新建与导入</text>
+<rect x="776" y="452" width="600" height="168" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="777" y="474" width="5" height="124" rx="2" fill="#18764C" stroke="none" stroke-width="2"/>
+<text x="801" y="474" fill="#18764C" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">会话回收站组件</text>
+<text x="801" y="525" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">dsh-team-manager/recycle</text>
+<text x="801" y="562" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">默认关闭，在组件条目上启用</text>
+<polyline points="364,621 364,663" fill="none" stroke="#3459CA" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="364.0,663.0 357.9,650.4 370.1,650.4" fill="#3459CA"/>
+<polyline points="1076,621 1076,663" fill="none" stroke="#18764C" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1076.0,663.0 1069.9,650.4 1082.1,650.4" fill="#18764C"/>
+<rect x="64" y="666" width="600" height="159" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="65" y="688" width="5" height="115" rx="2" fill="#3459CA" stroke="none" stroke-width="2"/>
+<text x="89" y="688" fill="#3459CA" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">设置 → TeamManeger</text>
+<text x="89" y="739" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">打开 Skill / Subagent 页签</text>
+<text x="89" y="776" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">备注就地改，其他区域进入编辑</text>
+<rect x="776" y="666" width="600" height="159" rx="18" fill="#FFFFFF" stroke="#D8DFEB" stroke-width="2"/>
+<rect x="777" y="688" width="5" height="115" rx="2" fill="#18764C" stroke="none" stroke-width="2"/>
+<text x="801" y="688" fill="#18764C" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="29" font-weight="600" dominant-baseline="text-before-edge">侧栏 → 回收站按钮</text>
+<text x="801" y="739" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">恢复会话、彻底删除、清空</text>
+<text x="801" y="776" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">在回收站内设置保留天数</text>
+<text x="66" y="860" fill="#5F6D83" font-family="Microsoft YaHei,Noto Sans SC,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge">两个组件独立开关，属于同一安装包；管理页面不额外放回收站控制区。</text>
+</svg>

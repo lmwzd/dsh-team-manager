@@ -131,7 +131,11 @@ select.tm_input { padding-right: 6px; cursor: pointer; }
   cursor: pointer; border-radius: inherit; z-index: 0;
 }
 .tm_card_title_button:focus-visible { outline: 2px solid var(--tm-accent); outline-offset: 1px; }
-.tm_card > *:not(.tm_card_title_button) { position: relative; z-index: 1; }
+/* Display-only content must not block the edit button underneath it: this
+   includes the footer's gaps and spacer. Restore hit testing only on actual
+   controls, including disabled buttons so they never fall through to editing. */
+.tm_card > :where(:not(.tm_card_title_button)) { position: relative; z-index: 1; pointer-events: none; }
+.tm_card :is(button, textarea, input, select, a, label) { pointer-events: auto; }
 .tm_card_title {
   display: flex; align-items: center; gap: 8px; min-width: 0;
   font-size: 13.5px; font-weight: 600; color: var(--tm-ink); line-height: 1.35;

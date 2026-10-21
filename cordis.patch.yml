@@ -1,5 +1,8 @@
-# One entry mounts the combined Host and Client halves.
+# One installable bundle, two independently switchable components.
 - insert:
     - id: dsh-team-manager
       name: 'dsh-team-manager'
       disabled: !!js "[...ctx.loader.entries()].some((e) => e.options.name === 'dsh-team-manager' && e.options.id !== 'dsh-team-manager' && !e.disabled)"
+    - id: dsh-team-manager-recycle
+      name: 'dsh-team-manager/recycle'
+      disabled: true
